@@ -42,7 +42,7 @@
                     {% endfor %}
                   </div>
 
-                    <a href="post.html">
+                    <a href="{{obj.get_absolute_url}}">
                     <h2 class="h4">{{ obj.title }}</h2></a>
                 </header>
                 <p>{{obj.overview}}</p>
