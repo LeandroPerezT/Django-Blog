@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h2 class="search-title">Estos son los resultados de tu búsqueda</h2>
+{% for post in queryset %}
+    
+    <ul>
+        <li><a class="search-link"  href="{{ post.get_absolute_url }}" >{{ post.title }}</a></li>
+    </ul>
+    <br>
+{% endfor %}
+
+<style>
+
+    .search-title{
+        margin: 1em;
+    }
+
+    .search-link{
+        margin-left:30px;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+    .search-link:hover{
+        transform: scale(1.2);
+    }
+
+</style>
+{% endblock %}
