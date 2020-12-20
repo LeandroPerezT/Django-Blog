@@ -51,7 +51,7 @@ def blog(request):
     category_count = get_category_count()
     most_recent = Post.objects.order_by('-timestamp')[0:3]
     post_list = Post.objects.all()
-    paginator = Paginator(post_list, 1)
+    paginator = Paginator(post_list, 4)
     page_request_var = 'page'
     page = request.GET.get(page_request_var)
 
