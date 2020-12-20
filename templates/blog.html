@@ -27,7 +27,7 @@
                       <div class="avatar"><img src="{{post.author.profile_picture.url}}" alt="..." class="img-fluid"></div>
                       <div class="title"><span>{{post.author.username}}</span></div></a>
                     <div class="date"><i class="icon-clock"></i> {{post.timestamp|timesince}}</div>
-                    <div class="comments meta-last"><i class="icon-comment"></i>{{post.comments}}</div>
+                    <div class="comments meta-last"><i class="icon-comment"></i>{{post.comment_count}}</div>
                   </footer>
                 </div>
               </div>
@@ -76,7 +76,7 @@
                     <div class="title"><strong>{{post.title}}</strong>
                       <div class="d-flex align-items-center">
                         <div class="views"><i class="icon-eye"></i> {{post.view_count}}</div>
-                        <div class="comments"><i class="icon-comment"></i>{{post.comments}}</div>
+                        <div class="comments"><i class="icon-comment"></i>{{post.comment_count}}</div>
                       </div>
                     </div>
                   </div>
