@@ -75,9 +75,12 @@ def blog(request):
 
 
 def post(request, id):
-
+    most_recent = Post.objects.order_by('-timestamp')[0:3]
+    category_count = get_category_count()
     post = get_object_or_404(Post, id=id)
     context = {
-        'post': post
+        'post': post,
+        'category_count': category_count,
+        'most_recent': most_recent
     }
     return render(request, 'post.html', context)
