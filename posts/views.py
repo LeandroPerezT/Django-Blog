@@ -1,8 +1,8 @@
 from django.db.models import Count, Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from .forms import CommentForm
-from .models import Post
+from .forms import CommentForm, PostForm
+from .models import Post, Author
 from marketing.models import Signup
 
 
@@ -86,3 +86,63 @@ def post(request, id):
         'category_count': category_count
     }
     return render(request, 'post.html', context)
+
+
+def get_author(user):
+    qs = Author.objects.filter(user = user)
+    if qs.exists():
+        return qs[0]
+
+    return None
+
+def post_create(request):
+
+    title = 'Crea un post'
+    form = PostForm(request.POST or None, request.FILES or None)
+    author = get_author(request.user)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.instance.author = author
+            form.save()
+            return redirect(reverse('post-detail', kwargs={
+                'id': form.instance.id
+            }))
+    
+    context = {
+        'title':title,
+        'form': form
+    }
+
+    return render(request, 'post_create.html', context)
+
+
+def post_update(request, id):
+    
+    title = 'Edita un Post'
+    post = get_object_or_404(Post, id=id)
+    
+    form = PostForm(request.POST or None,
+    request.FILES or None, instance=post)
+    
+    author = get_author(request.user)
+    
+    if request.method == 'POST':
+        if form.is_valid():
+            form.instance.author = author
+            form.save()
+            return redirect(reverse('post-detail', kwargs={
+                'id': form.instance.id
+            }))
+    
+    context = {
+        'form': form,
+        'title': title
+    }
+
+    return render(request, 'post_create.html', context) # Uses the same template as post-create
+
+
+def post_delete(request,id):
+    post = get_object_or_404(Post, id=id)
+    post.delete()
+    return redirect(reverse('post-list'))

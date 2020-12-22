@@ -31,7 +31,13 @@ INSTALLED_APPS = [
     'marketing',
 
     'tinymce',
+    'crispy_forms',
 ]
+# CRISPY TEMPLATES
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4' # FOR BOOTSTRAP4
+
+
 # TinyMCE configuration
 
 TINYMCE_DEFAULT_CONFIG = {

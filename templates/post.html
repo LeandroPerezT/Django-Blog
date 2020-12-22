@@ -23,8 +23,14 @@
                     <a href="#">{{ cat }}</a>
                     {% endfor %}
                   </div>
+                  {% if user.is_authenticated %}
+                  <div>
+                    <a href="{% url 'post-update' id=post.id %}">Update</a>
+                    <a href="{% url 'post-delete' id=post.id %}">Delete</a>
+                  </div>
+                  {% endif %}
                 </div>
-                <h1>{{ post.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
+                <h1>{{ post.title }}</h1>
                 <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
                     <div class="avatar"><img src="{{ post.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
                     <div class="title"><span>{{ post.author.user.username }}</span></div></a>
