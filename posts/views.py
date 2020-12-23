@@ -5,7 +5,6 @@ from .forms import CommentForm, PostForm
 from .models import Post, Author
 from marketing.models import Signup
 
-
 def search(request):
     queryset = Post.objects.all()
     query = request.GET.get('q')
@@ -77,7 +76,7 @@ def post(request, id):
             form.instance.post = post
             form.save()
             return redirect(reverse("post-detail", kwargs={
-                'id': post.pk
+                'id': post.id
             }))
     context = {
         'form': form,

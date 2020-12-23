@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block content %}
+{% block main %}
 
 <style>
   .post-body img {
@@ -117,4 +117,4 @@
         {% include 'sidebar.html' with most_recent=most_recent category_count=category_count %}        
       </div>
     </div>
-{% endblock content %}
+{% endblock main %}
